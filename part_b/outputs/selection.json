@@ -1,0 +1,107 @@
+{
+  "selected_model": "hist_gradient_boosting",
+  "selected_config": {
+    "kind": "hgb",
+    "max_iter": 350,
+    "learning_rate": 0.07,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 10.0
+  },
+  "tuning_months": [
+    "2025-10",
+    "2025-11"
+  ],
+  "validation_months": [
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05"
+  ],
+  "tuning_metrics": [
+    {
+      "model": "hist_gradient_boosting",
+      "n": 4117,
+      "mdape": 9.305976995272035,
+      "mape": 11.70995058421411,
+      "median_signed_error": 1.875558867362146,
+      "within_10_pct": 52.97546757347583,
+      "within_20_pct": 83.41025018217148
+    },
+    {
+      "model": "catboost_d7_rmse",
+      "n": 4117,
+      "mdape": 9.538786701702273,
+      "mape": 12.065393794011522,
+      "median_signed_error": 1.4648729446935724,
+      "within_10_pct": 52.00388632499393,
+      "within_20_pct": 81.80714112217635
+    },
+    {
+      "model": "catboost_d7_mae",
+      "n": 4117,
+      "mdape": 9.578221208665907,
+      "mape": 12.031144171460335,
+      "median_signed_error": 1.151480437081424,
+      "within_10_pct": 52.02817585620597,
+      "within_20_pct": 82.26864221520525
+    },
+    {
+      "model": "catboost_d6_rmse",
+      "n": 4117,
+      "mdape": 9.94135410044501,
+      "mape": 12.636537594843537,
+      "median_signed_error": 1.6931970959935467,
+      "within_10_pct": 50.23075054651446,
+      "within_20_pct": 80.1554529997571
+    },
+    {
+      "model": "catboost_no_remarks",
+      "n": 4117,
+      "mdape": 10.513494216764244,
+      "mape": 13.35452886671572,
+      "median_signed_error": 1.5669182523652598,
+      "within_10_pct": 47.87466601894583,
+      "within_20_pct": 77.6536312849162
+    },
+    {
+      "model": "random_forest",
+      "n": 4117,
+      "mdape": 13.283042065513305,
+      "mape": 16.989606269002632,
+      "median_signed_error": 6.377914605834259,
+      "within_10_pct": 39.446198688365314,
+      "within_20_pct": 68.10784551858148
+    },
+    {
+      "model": "rolling_community_12m",
+      "n": 4117,
+      "mdape": 19.017036235803136,
+      "mape": 23.577207754249326,
+      "median_signed_error": 6.75146771037182,
+      "within_10_pct": 28.418751518095704,
+      "within_20_pct": 52.368229293174636
+    },
+    {
+      "model": "nearest_sales_10",
+      "n": 4117,
+      "mdape": 21.59165424739195,
+      "mape": 28.883910977560067,
+      "median_signed_error": 10.364327895105594,
+      "within_10_pct": 25.066796210833132,
+      "within_20_pct": 47.38887539470488
+    },
+    {
+      "model": "global_median",
+      "n": 4117,
+      "mdape": 35.478288231592195,
+      "mape": 43.24196113515013,
+      "median_signed_error": 5.45822102425876,
+      "within_10_pct": 15.278115132377945,
+      "within_20_pct": 30.119018702939034
+    }
+  ],
+  "fingerprint": "4dc94cdea72450bf06b887575b66caf16cc5726e5c16a063c843e903385fae59",
+  "selection_rule": "Lowest pooled Oct-Nov 2025 MdAPE; MAPE breaks ties. Selection frozen before Dec-May validation."
+}

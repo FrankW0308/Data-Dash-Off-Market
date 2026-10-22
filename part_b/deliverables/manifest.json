@@ -1,0 +1,16 @@
+{
+  "selected_model": "hist_gradient_boosting",
+  "fingerprint": "4dc94cdea72450bf06b887575b66caf16cc5726e5c16a063c843e903385fae59",
+  "source": "https://github.com/erwinzhang7/SSU-Data-Dash",
+  "source_commit": "6c5831e12f523d617eccd1418d46a5cf2a0bb8b4",
+  "files": [
+    "chinese_handoff.md",
+    "manifest.json",
+    "model_comparison.md",
+    "part_b_report.docx",
+    "part_b_report.pdf",
+    "part_b_slides.pptx",
+    "report_section.md",
+    "speaker_script_75_seconds.md"
+  ]
+}

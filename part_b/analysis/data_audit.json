@@ -1,0 +1,282 @@
+{
+  "sources": {
+    "training_file": "/workspace/attachments/730a2536-20a7-4a65-9a86-b0fa904cbe0d/listings.parquet",
+    "off_market_test_file": "/workspace/attachments/09e42bed-d11c-4354-9ad3-aa4ec71fe336/test_off_market.parquet",
+    "official_reference_commit": "6c5831e12f523d617eccd1418d46a5cf2a0bb8b4"
+  },
+  "train": {
+    "rows": 150000,
+    "columns": [
+      "ml_num",
+      "sold_price",
+      "list_price",
+      "date_listed",
+      "date_sold",
+      "days_on_market",
+      "house_type_name",
+      "house_style",
+      "bedrooms",
+      "washrooms",
+      "parking_total",
+      "garage",
+      "house_area",
+      "lot_front",
+      "lot_depth",
+      "municipality",
+      "community",
+      "latitude",
+      "longitude",
+      "external_avm_estimate",
+      "external_avm_estimate_date",
+      "remarks"
+    ],
+    "dtypes": {
+      "ml_num": "object",
+      "sold_price": "float64",
+      "list_price": "float64",
+      "date_listed": "datetime64[us]",
+      "date_sold": "datetime64[us]",
+      "days_on_market": "int64",
+      "house_type_name": "object",
+      "house_style": "object",
+      "bedrooms": "int64",
+      "washrooms": "int64",
+      "parking_total": "int64",
+      "garage": "float64",
+      "house_area": "object",
+      "lot_front": "float64",
+      "lot_depth": "float64",
+      "municipality": "object",
+      "community": "object",
+      "latitude": "float64",
+      "longitude": "float64",
+      "external_avm_estimate": "float64",
+      "external_avm_estimate_date": "datetime64[us]",
+      "remarks": "object"
+    },
+    "missing_count": {
+      "ml_num": 0,
+      "sold_price": 0,
+      "list_price": 0,
+      "date_listed": 0,
+      "date_sold": 0,
+      "days_on_market": 0,
+      "house_type_name": 0,
+      "house_style": 0,
+      "bedrooms": 0,
+      "washrooms": 0,
+      "parking_total": 0,
+      "garage": 0,
+      "house_area": 0,
+      "lot_front": 87263,
+      "lot_depth": 87263,
+      "municipality": 0,
+      "community": 0,
+      "latitude": 0,
+      "longitude": 0,
+      "external_avm_estimate": 1306,
+      "external_avm_estimate_date": 0,
+      "remarks": 0
+    },
+    "duplicate_ids": 0,
+    "date_listed_min": "2020-02-19",
+    "date_listed_max": "2026-05-29",
+    "property_types": {
+      "Condo Apt": 76374,
+      "Detached": 43202,
+      "Semi-Detached": 14397,
+      "Condo Townhouse": 10160,
+      "Freehold Townhouse": 5138,
+      "Co-Op Apt": 729
+    }
+  },
+  "test": {
+    "rows": 3974,
+    "columns": [
+      "ml_num",
+      "date_listed",
+      "house_type_name",
+      "house_style",
+      "bedrooms",
+      "washrooms",
+      "parking_total",
+      "garage",
+      "house_area",
+      "lot_front",
+      "lot_depth",
+      "municipality",
+      "community",
+      "latitude",
+      "longitude",
+      "remarks"
+    ],
+    "dtypes": {
+      "ml_num": "object",
+      "date_listed": "datetime64[us]",
+      "house_type_name": "object",
+      "house_style": "object",
+      "bedrooms": "int64",
+      "washrooms": "int64",
+      "parking_total": "int64",
+      "garage": "float64",
+      "house_area": "object",
+      "lot_front": "float64",
+      "lot_depth": "float64",
+      "municipality": "object",
+      "community": "object",
+      "latitude": "float64",
+      "longitude": "float64",
+      "remarks": "object"
+    },
+    "missing_count": {
+      "ml_num": 0,
+      "date_listed": 0,
+      "house_type_name": 0,
+      "house_style": 0,
+      "bedrooms": 0,
+      "washrooms": 0,
+      "parking_total": 0,
+      "garage": 0,
+      "house_area": 0,
+      "lot_front": 2149,
+      "lot_depth": 2149,
+      "municipality": 0,
+      "community": 0,
+      "latitude": 0,
+      "longitude": 0,
+      "remarks": 0
+    },
+    "duplicate_ids": 0,
+    "date_listed_min": "2025-08-01",
+    "date_listed_max": "2026-09-28",
+    "property_types": {
+      "Condo Apt": 1884,
+      "Detached": 1271,
+      "Semi-Detached": 418,
+      "Condo Townhouse": 243,
+      "Freehold Townhouse": 136,
+      "Co-Op Apt": 22
+    }
+  },
+  "train_sale_dates": {
+    "min": "2021-01-01",
+    "max": "2026-05-31"
+  },
+  "overlapping_ids": 0,
+  "target_statistics_cad": {
+    "count": 150000.0,
+    "mean": 1073917.036,
+    "std": 812529.9535358746,
+    "min": 172600.0,
+    "1%": 356700.0,
+    "5%": 442700.0,
+    "25%": 623700.0,
+    "50%": 856650.0,
+    "75%": 1239800.0,
+    "95%": 2361409.9999999977,
+    "99%": 4344403.000000003,
+    "max": 30000000.0
+  },
+  "nonpositive_targets": 0,
+  "nonfinite_targets": 0,
+  "unseen_test_categories": {
+    "house_type_name": [],
+    "house_style": [],
+    "municipality": [],
+    "community": []
+  },
+  "area_parsing": {
+    "train": {
+      "unparsed_rows": 0,
+      "range_rows": 60031,
+      "midpoint_min": 300.0,
+      "midpoint_max": 9099.5
+    },
+    "test": {
+      "unparsed_rows": 0,
+      "range_rows": 1603,
+      "midpoint_min": 359.0,
+      "midpoint_max": 9099.5
+    }
+  },
+  "remarks_scan": {
+    "train": {
+      "currency_symbol": 0,
+      "sale_price_phrase": 0,
+      "renovation_language": 44694,
+      "repair_language": 37458,
+      "unique_remarks": 149999,
+      "median_characters": 369.0
+    },
+    "test": {
+      "currency_symbol": 0,
+      "sale_price_phrase": 0,
+      "renovation_language": 1251,
+      "repair_language": 969,
+      "unique_remarks": 3974,
+      "median_characters": 372.0
+    }
+  },
+  "external_avm_after_sale_rows": 105284,
+  "external_avm_after_sale_pct": 70.18933333333334,
+  "official_monthly_validation": [
+    {
+      "month": "2025-12",
+      "training_rows": 139931,
+      "validation_rows": 1238,
+      "training_max_sale_date": "2025-11-30",
+      "validation_listed_before_month_start": 909,
+      "validation_listed_before_month_start_pct": 73.42
+    },
+    {
+      "month": "2026-01",
+      "training_rows": 141169,
+      "validation_rows": 1058,
+      "training_max_sale_date": "2025-12-31",
+      "validation_listed_before_month_start": 768,
+      "validation_listed_before_month_start_pct": 72.59
+    },
+    {
+      "month": "2026-02",
+      "training_rows": 142227,
+      "validation_rows": 1442,
+      "training_max_sale_date": "2026-01-31",
+      "validation_listed_before_month_start": 1006,
+      "validation_listed_before_month_start_pct": 69.76
+    },
+    {
+      "month": "2026-03",
+      "training_rows": 143669,
+      "validation_rows": 1816,
+      "training_max_sale_date": "2026-02-28",
+      "validation_listed_before_month_start": 1107,
+      "validation_listed_before_month_start_pct": 60.96
+    },
+    {
+      "month": "2026-04",
+      "training_rows": 145485,
+      "validation_rows": 2224,
+      "training_max_sale_date": "2026-03-31",
+      "validation_listed_before_month_start": 1330,
+      "validation_listed_before_month_start_pct": 59.8
+    },
+    {
+      "month": "2026-05",
+      "training_rows": 147709,
+      "validation_rows": 2291,
+      "training_max_sale_date": "2026-04-30",
+      "validation_listed_before_month_start": 1345,
+      "validation_listed_before_month_start_pct": 58.71
+    }
+  ],
+  "forbidden_off_market_predictors": [
+    "sold_price",
+    "list_price",
+    "date_sold",
+    "days_on_market",
+    "external_avm_estimate",
+    "external_avm_estimate_date"
+  ],
+  "id_recommendation": "Keep ml_num for alignment only, not as a predictive feature.",
+  "timing_warning": "Official starter validates by sale month, not by listing time. Some validation properties were listed before the month cutoff. This permits training sales newer than their listing dates; do not describe it as a strict as-of-listing valuation test."
+}

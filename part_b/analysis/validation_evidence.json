@@ -1,0 +1,11 @@
+{
+  "official_submission_check": "pass",
+  "submission_rows": 3974,
+  "validation_rows_per_model": 10069,
+  "validation_models": 4,
+  "metrics_recomputed": true,
+  "reloaded_predictions_byte_identical": true,
+  "model_class_module": "part_b.run",
+  "unit_tests_passed": 9,
+  "submission_sha256": "fff1276fbd8ba3dd5ded9e3fe087c4882a533aca70b54a2385d0c98b24d08c9e"
+}

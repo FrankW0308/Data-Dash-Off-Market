@@ -1,0 +1,13 @@
+{
+  "model": "hist_gradient_boosting",
+  "config": {
+    "kind": "hgb",
+    "max_iter": 350,
+    "learning_rate": 0.07,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 10.0
+  },
+  "train_n": 150000,
+  "last_training_sale": "2026-05-31",
+  "fingerprint": "4dc94cdea72450bf06b887575b66caf16cc5726e5c16a063c843e903385fae59"
+}

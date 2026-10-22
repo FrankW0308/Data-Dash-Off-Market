@@ -1,0 +1,90 @@
+20:23:20 Preparing deterministic row-local features once; all learned preprocessing remains fold-local
+20:23:49 Fitting global_median, 2025-10: 135,814 earlier sales / 2,250 held-out homes
+20:23:50 global_median 2025-10: MdAPE 35.29% / MAPE 42.45% (0.4s)
+20:23:50 Fitting global_median, 2025-11: 138,064 earlier sales / 1,867 held-out homes
+20:23:50 global_median 2025-11: MdAPE 35.74% / MAPE 44.20% (0.3s)
+20:23:50 Fitting rolling_community_12m, 2025-10: 135,814 earlier sales / 2,250 held-out homes
+20:23:50 rolling_community_12m 2025-10: MdAPE 18.55% / MAPE 22.88% (0.6s)
+20:23:51 Fitting rolling_community_12m, 2025-11: 138,064 earlier sales / 1,867 held-out homes
+20:23:51 rolling_community_12m 2025-11: MdAPE 19.66% / MAPE 24.42% (0.6s)
+20:23:51 Fitting nearest_sales_10, 2025-10: 135,814 earlier sales / 2,250 held-out homes
+20:23:52 nearest_sales_10 2025-10: MdAPE 21.57% / MAPE 27.85% (0.8s)
+20:23:52 Fitting nearest_sales_10, 2025-11: 138,064 earlier sales / 1,867 held-out homes
+20:23:53 nearest_sales_10 2025-11: MdAPE 21.64% / MAPE 30.13% (0.7s)
+20:23:53 Fitting random_forest, 2025-10: 135,814 earlier sales / 2,250 held-out homes
+20:24:35 random_forest 2025-10: MdAPE 12.90% / MAPE 16.54% (42.7s)
+20:24:35 Fitting random_forest, 2025-11: 138,064 earlier sales / 1,867 held-out homes
+20:25:15 random_forest 2025-11: MdAPE 13.96% / MAPE 17.53% (39.8s)
+20:25:15 Fitting hist_gradient_boosting, 2025-10: 135,814 earlier sales / 2,250 held-out homes
+20:25:23 hist_gradient_boosting 2025-10: MdAPE 9.04% / MAPE 11.43% (7.7s)
+20:25:23 Fitting hist_gradient_boosting, 2025-11: 138,064 earlier sales / 1,867 held-out homes
+20:25:31 hist_gradient_boosting 2025-11: MdAPE 9.68% / MAPE 12.04% (8.0s)
+20:25:31 Fitting catboost_d6_rmse, 2025-10: 135,814 earlier sales / 2,250 held-out homes
+20:25:57 catboost_d6_rmse 2025-10: MdAPE 9.86% / MAPE 12.46% (25.6s)
+20:25:57 Fitting catboost_d6_rmse, 2025-11: 138,064 earlier sales / 1,867 held-out homes
+20:26:24 catboost_d6_rmse 2025-11: MdAPE 10.15% / MAPE 12.85% (27.0s)
+20:26:24 Fitting catboost_d7_rmse, 2025-10: 135,814 earlier sales / 2,250 held-out homes
+20:27:07 catboost_d7_rmse 2025-10: MdAPE 9.54% / MAPE 11.85% (43.7s)
+20:27:07 Fitting catboost_d7_rmse, 2025-11: 138,064 earlier sales / 1,867 held-out homes
+20:27:52 catboost_d7_rmse 2025-11: MdAPE 9.54% / MAPE 12.33% (44.6s)
+20:27:52 Fitting catboost_d7_mae, 2025-10: 135,814 earlier sales / 2,250 held-out homes
+20:28:44 catboost_d7_mae 2025-10: MdAPE 9.50% / MAPE 11.82% (51.7s)
+20:28:44 Fitting catboost_d7_mae, 2025-11: 138,064 earlier sales / 1,867 held-out homes
+20:29:38 catboost_d7_mae 2025-11: MdAPE 9.74% / MAPE 12.29% (53.8s)
+20:29:38 Fitting catboost_no_remarks, 2025-10: 135,814 earlier sales / 2,250 held-out homes
+20:30:02 catboost_no_remarks 2025-10: MdAPE 10.14% / MAPE 13.08% (24.6s)
+20:30:02 Fitting catboost_no_remarks, 2025-11: 138,064 earlier sales / 1,867 held-out homes
+20:30:29 catboost_no_remarks 2025-11: MdAPE 11.07% / MAPE 13.68% (26.8s)
+20:30:29 Frozen selection: hist_gradient_boosting; tuning MdAPE 9.31%
+20:30:29 Fitting global_median, 2025-12: 139,931 earlier sales / 1,238 held-out homes
+20:30:29 global_median 2025-12: MdAPE 39.23% / MAPE 47.57% (0.4s)
+20:30:30 Fitting global_median, 2026-01: 141,169 earlier sales / 1,058 held-out homes
+20:30:30 global_median 2026-01: MdAPE 38.14% / MAPE 47.69% (0.3s)
+20:30:30 Fitting global_median, 2026-02: 142,227 earlier sales / 1,442 held-out homes
+20:30:30 global_median 2026-02: MdAPE 37.74% / MAPE 45.30% (0.4s)
+20:30:30 Fitting global_median, 2026-03: 143,669 earlier sales / 1,816 held-out homes
+20:30:31 global_median 2026-03: MdAPE 39.40% / MAPE 47.19% (0.4s)
+20:30:31 Fitting global_median, 2026-04: 145,485 earlier sales / 2,224 held-out homes
+20:30:31 global_median 2026-04: MdAPE 39.51% / MAPE 47.43% (0.4s)
+20:30:31 Fitting global_median, 2026-05: 147,709 earlier sales / 2,291 held-out homes
+20:30:31 global_median 2026-05: MdAPE 37.18% / MAPE 45.45% (0.4s)
+20:30:31 Fitting rolling_community_12m, 2025-12: 139,931 earlier sales / 1,238 held-out homes
+20:30:32 rolling_community_12m 2025-12: MdAPE 19.49% / MAPE 24.56% (0.5s)
+20:30:32 Fitting rolling_community_12m, 2026-01: 141,169 earlier sales / 1,058 held-out homes
+20:30:33 rolling_community_12m 2026-01: MdAPE 18.72% / MAPE 23.09% (0.5s)
+20:30:33 Fitting rolling_community_12m, 2026-02: 142,227 earlier sales / 1,442 held-out homes
+20:30:33 rolling_community_12m 2026-02: MdAPE 18.27% / MAPE 22.59% (0.6s)
+20:30:33 Fitting rolling_community_12m, 2026-03: 143,669 earlier sales / 1,816 held-out homes
+20:30:34 rolling_community_12m 2026-03: MdAPE 16.69% / MAPE 21.51% (0.6s)
+20:30:34 Fitting rolling_community_12m, 2026-04: 145,485 earlier sales / 2,224 held-out homes
+20:30:34 rolling_community_12m 2026-04: MdAPE 17.67% / MAPE 21.87% (0.6s)
+20:30:34 Fitting rolling_community_12m, 2026-05: 147,709 earlier sales / 2,291 held-out homes
+20:30:35 rolling_community_12m 2026-05: MdAPE 17.35% / MAPE 21.34% (0.6s)
+20:30:35 Fitting nearest_sales_10, 2025-12: 139,931 earlier sales / 1,238 held-out homes
+20:30:36 nearest_sales_10 2025-12: MdAPE 23.38% / MAPE 30.63% (0.6s)
+20:30:36 Fitting nearest_sales_10, 2026-01: 141,169 earlier sales / 1,058 held-out homes
+20:30:36 nearest_sales_10 2026-01: MdAPE 20.69% / MAPE 27.82% (0.5s)
+20:30:36 Fitting nearest_sales_10, 2026-02: 142,227 earlier sales / 1,442 held-out homes
+20:30:37 nearest_sales_10 2026-02: MdAPE 20.44% / MAPE 26.40% (0.6s)
+20:30:37 Fitting nearest_sales_10, 2026-03: 143,669 earlier sales / 1,816 held-out homes
+20:30:37 nearest_sales_10 2026-03: MdAPE 19.36% / MAPE 26.78% (0.7s)
+20:30:38 Fitting nearest_sales_10, 2026-04: 145,485 earlier sales / 2,224 held-out homes
+20:30:38 nearest_sales_10 2026-04: MdAPE 21.33% / MAPE 27.64% (0.9s)
+20:30:38 Fitting nearest_sales_10, 2026-05: 147,709 earlier sales / 2,291 held-out homes
+20:30:39 nearest_sales_10 2026-05: MdAPE 19.76% / MAPE 26.48% (1.0s)
+20:30:39 Fitting hist_gradient_boosting, 2025-12: 139,931 earlier sales / 1,238 held-out homes
+20:30:47 hist_gradient_boosting 2025-12: MdAPE 9.57% / MAPE 11.86% (7.9s)
+20:30:47 Fitting hist_gradient_boosting, 2026-01: 141,169 earlier sales / 1,058 held-out homes
+20:30:56 hist_gradient_boosting 2026-01: MdAPE 8.85% / MAPE 11.86% (8.2s)
+20:30:56 Fitting hist_gradient_boosting, 2026-02: 142,227 earlier sales / 1,442 held-out homes
+20:31:03 hist_gradient_boosting 2026-02: MdAPE 9.14% / MAPE 11.41% (7.8s)
+20:31:03 Fitting hist_gradient_boosting, 2026-03: 143,669 earlier sales / 1,816 held-out homes
+20:31:12 hist_gradient_boosting 2026-03: MdAPE 8.75% / MAPE 11.34% (8.4s)
+20:31:12 Fitting hist_gradient_boosting, 2026-04: 145,485 earlier sales / 2,224 held-out homes
+20:31:20 hist_gradient_boosting 2026-04: MdAPE 9.00% / MAPE 11.31% (8.3s)
+20:31:20 Fitting hist_gradient_boosting, 2026-05: 147,709 earlier sales / 2,291 held-out homes
+20:31:29 hist_gradient_boosting 2026-05: MdAPE 9.32% / MAPE 11.94% (8.6s)
+20:31:29 Refitting frozen selected model on all 150,000 training sales
+20:31:38 Submission check PASS: exact schema, complete unique IDs, positive finite prices
+20:31:38 Wrote and checked 3,974 off-market predictions: /workspace/Data-Dash-Off-Market/submissions/submission_off_market.csv
+20:31:38 Completed requested stage.

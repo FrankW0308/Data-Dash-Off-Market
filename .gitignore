@@ -1,0 +1,9 @@
+__pycache__/
+.pytest_cache/
+.venv/
+data/*.csv
+data/*.parquet
+part_b/outputs/cache/
+catboost_info/
+*.zip
+!Part_B_Off_Market_Complete.zip
