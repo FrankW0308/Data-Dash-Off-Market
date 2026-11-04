@@ -61,16 +61,14 @@ row-local behavior, parsing, model wiring, and end-to-end runner compatibility.
 
 Joey's three extra price-derived columns change the list-aware feature set from
 the previous official baseline. Its earlier 4.69% validation MdAPE must not be
-reused for this new version. Fresh list-aware validation used the official
-December 2025–May 2026 monthly folds on 10,069 homes: **4.63% MdAPE, 6.30% MAPE**.
-The off-market feature tables and model settings are unchanged; its preceding
-matching-model validation measured **9.03% MdAPE, 12.39% MAPE** on those months.
-[The validation summary](feature_validation/summary.json) records the source
-fingerprints, equivalence checks, and scope of each result. Detailed new
-list-aware outputs are under `/workspace/deliverables/features_review`.
-Hidden-test accuracy remains unknown.
-The supplied cleaned CSVs were used as received; their original cleaning process
-has not been independently audited.
+reused for this new version. Subsequent cleaned-data checks used the official
+monthly fold boundaries, but the final audit found that **255 validation target
+prices had been replaced with $843,000**. The reported cleaned-label MdAPEs of
+9.03% off-market and 4.63% list-aware cannot establish original-target accuracy.
+[The validation summary](feature_validation/summary.json) retains those results
+with an explicit data-quality warning. See [FINAL_AUDIT.md](FINAL_AUDIT.md) for
+the blocker and required original-data rerun. Feature parity and the 63 code
+tests still pass; hidden-test accuracy remains unknown.
 
 This completes the feature code portion of the requirements. The submission
 still needs predictions generated from the final frozen code, both CSVs checked

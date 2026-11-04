@@ -33,15 +33,19 @@ go to root-level `outputs/`, `reports/`, `figures/`, and `submissions/`.
 `predict` replaces the submitted CSVs; use freshly generated outputs from the
 same frozen model version for the final submission.
 
-**The historical scores below do not evaluate the combined root `models.py`.**
-Its hyperparameters and feature processing differ. On the supplied cleaned CSVs,
-the combined off-market model measured 9.03% MdAPE / 12.39% MAPE; the list-aware
-model with Joey's uploaded features measured 4.63% MdAPE / 6.30% MAPE. Each used
-the official December 2025–May 2026 chronological protocol on 10,069 homes.
-See [the versioned validation summary](feature_validation/summary.json) for source
-fingerprints and the off-market feature-parity check. These are validation errors;
-hidden-test accuracy and rank remain unknown. The downloadable Part B ZIP is the
-historical package and does not include the combined workflow.
+**Final audit: the code passes 63 tests, but the entry is not ready to submit.**
+The supplied cleaned training file changed 255 of the 10,069 validation targets
+relative to the retained original-data results: every affected sale price became
+$843,000. Consequently, the earlier 9.03% off-market and 4.63% list-aware MdAPEs
+measure altered labels and must not be presented as scores against the original
+competition targets. Obtain the original competition files, audit preprocessing,
+then rerun validation and both submissions. See [the final audit](FINAL_AUDIT.md)
+and [versioned validation summary](feature_validation/summary.json).
+
+The historical scores below belong to the separate original `part_b` workflow;
+they do not evaluate the combined root model. The downloadable Part B ZIP is the
+historical package and does not include the combined workflow. Hidden-test
+accuracy and rank remain unknown.
 
 ## Measured results
 
