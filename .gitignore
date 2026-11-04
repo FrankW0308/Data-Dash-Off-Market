@@ -1,6 +1,7 @@
 __pycache__/
 .pytest_cache/
 .venv/
+.competition-venv/
 data/*.csv
 data/*.parquet
 part_b/outputs/cache/

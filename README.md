@@ -5,6 +5,38 @@ validation, fitted model, test predictions, reports, slides and a presentation s
 
 **[Download the complete Part B package](https://github.com/FrankW0308/Data-Dash-Off-Market/raw/refs/heads/main/Part_B_Off_Market_Complete.zip)**
 
+## Combined off-market and list-aware workflow
+
+The root `models.py` combines `OffMarketModel` and Joey's `ListRatioModel`.
+The official starter's runner, feature functions, data loader, submission checker,
+and dependency pins are included at the repository root. See
+[the model review](MODEL_REVIEW.md) for checks and outstanding submission items.
+
+Use a separate environment for the official runner; the historical `part_b`
+workflow below has different dependency pins:
+
+```bash
+python3 -m venv .competition-venv
+.competition-venv/bin/python -m pip install -r requirements.txt
+.competition-venv/bin/python -m pytest tests -q
+.competition-venv/bin/python run.py validate
+.competition-venv/bin/python run.py report
+.competition-venv/bin/python run.py predict
+.competition-venv/bin/python run.py check
+```
+
+The runner downloads the official data from Hugging Face, or uses local files
+when `DATA_DIR` points to their folder. Both test files are required. Its outputs
+go to root-level `outputs/`, `reports/`, `figures/`, and `submissions/`.
+`predict` replaces the submitted CSVs; use freshly generated outputs from the
+same frozen model version for the final submission.
+
+**The historical scores below do not evaluate the combined root `models.py`.**
+Its hyperparameters and feature processing differ. Real-data validation for both
+combined tracks is outstanding; synthetic integration checks establish that the
+pipeline runs, not its accuracy or competition rank. The downloadable Part B ZIP
+is the historical package and does not include the combined workflow.
+
 ## Measured results
 
 Histogram gradient boosting was selected using October–November 2025 only.

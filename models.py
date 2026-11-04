@@ -3,9 +3,10 @@
 make_model("off_market") uses the off-market model from the uploaded models.py.
 make_model("list_aware") uses Joey's sold-to-list ratio model.
 
-The list-aware model requires the original starter features.py module defining
-list_aware_features(homes). It is imported only when fitting or predicting with
-ListRatioModel, so the off-market model works without that external module.
+The accompanying features.py contains the official list-aware features. It is
+imported only when fitting or predicting with ListRatioModel, so off-market use
+does not require that module. Use the official chronological runner for scoring;
+the historical part_b scores do not measure this combined implementation.
 """
 from __future__ import annotations
 
@@ -173,14 +174,15 @@ def make_model(track, *, threads=4):
     if track == 'off_market':
         return OffMarketModel(threads=threads)
     if track == 'list_aware':
-        return ListRatioModel()
+        return ListRatioModel(threads=threads)
     raise ValueError("track must be 'off_market' or 'list_aware'")
 
 class OffMarketModel(BaseEstimator):
     """Fold-fitted histogram gradient boosting on log(sold_price).
 
-    Settings selected on expanding October–November 2025 folds, then frozen
-    before December–May evaluation. Never select settings using test homes.
+    These settings differ from the historical part_b model. No matching
+    real-data validation scores are recorded for this implementation yet.
+    Select settings using earlier chronological tuning folds, never test homes.
     No fitted artifact, dataset, optional boosting package or network access is
     required. The caller must supply only earlier sales in each training fold.
     """
@@ -313,64 +315,98 @@ class FeatureModel:
         return np.exp(self.model.predict(self.make_features(homes)))
 
 
-class ListRatioModel:
+class ListRatioModel(BaseEstimator):
     """Joey's list-aware sold-to-list ratio model, split by house type.
 
     Requires features.list_aware_features from the original starter project.
     Types with fewer than 100 training rows use the general fallback model.
     """
 
-    def __init__(self):
+    def __init__(self, threads=4):
+        if not isinstance(threads, int) or isinstance(threads, bool) or threads < 1:
+            raise ValueError('threads must be a positive integer')
+        self.threads = threads
         self.models = {}
         self.fallback_model = HistGradientBoostingRegressor(
             random_state=0
         )
 
+    @staticmethod
+    def _list_prices(homes):
+        if not isinstance(homes, pd.DataFrame):
+            raise TypeError('homes must be a pandas DataFrame')
+        if homes.columns.duplicated().any():
+            raise ValueError('Duplicate input column names are not supported')
+        if 'list_price' not in homes:
+            raise ValueError('List-aware inputs require list_price')
+        prices = pd.to_numeric(homes['list_price'], errors='raise').to_numpy(dtype=float)
+        if not np.isfinite(prices).all() or (prices <= 0).any():
+            raise ValueError('list_price must contain positive finite prices')
+        return prices
+
     def fit(self, train):
         from features import list_aware_features
 
+        list_prices = self._list_prices(train)
+        if train.empty or 'sold_price' not in train:
+            raise ValueError('Training requires nonempty sales with sold_price')
+        sold_prices = pd.to_numeric(train['sold_price'], errors='raise').to_numpy(dtype=float)
+        if not np.isfinite(sold_prices).all() or (sold_prices <= 0).any():
+            raise ValueError('sold_price must contain positive finite prices')
         x = list_aware_features(train)
-        y = np.log(train["sold_price"] / train["list_price"])
+        y = np.log(sold_prices / list_prices)
+        if not np.isfinite(y).all():
+            raise ValueError('Sold-to-list ratios must produce finite log targets')
 
-        # A general model for fallback predictions
-        self.fallback_model.fit(x, y)
+        # Rebuild every fitted model on each call: a smaller new training fold
+        # must never retain a type-specific model from a previous fit.
+        fallback_model = HistGradientBoostingRegressor(random_state=0)
+        fitted_models = {}
+        with threadpool_limits(limits=self.threads):
+            fallback_model.fit(x, y)
 
-        # Train separate models for each house type
-        for house_type in train["house_type_name"].unique():
-            mask = train["house_type_name"] == house_type
+            # Train separate models for each house type.
+            for house_type in train["house_type_name"].dropna().unique():
+                mask = train["house_type_name"].eq(house_type).fillna(False).to_numpy(dtype=bool)
 
-            if mask.sum() < 100:
-                continue
+                if mask.sum() < 100:
+                    continue
 
-            model = HistGradientBoostingRegressor(
-                max_iter=200,
-                learning_rate=0.05,
-                random_state=0
-            )
+                model = HistGradientBoostingRegressor(
+                    max_iter=200,
+                    learning_rate=0.05,
+                    random_state=0
+                )
 
-            model.fit(x.loc[mask], y.loc[mask])
-            self.models[house_type] = model
+                model.fit(x.loc[mask], y[mask])
+                fitted_models[house_type] = model
 
+        self.fallback_model = fallback_model
+        self.models = fitted_models
+        self.is_fitted_ = True
         return self
 
     def predict(self, homes):
-        from features import list_aware_features
+        check_is_fitted(self, 'is_fitted_')
+        list_prices = self._list_prices(homes)
+        if homes.empty:
+            return np.empty(0, dtype=float)
 
+        from features import list_aware_features
         x = list_aware_features(homes)
 
-        # General model prediction first
-        predicted_log_ratio = self.fallback_model.predict(x)
+        with threadpool_limits(limits=self.threads):
+            # General model prediction first.
+            predicted_log_ratio = self.fallback_model.predict(x)
 
-        # Replace with house-type-specific predictions
-        for house_type, model in self.models.items():
-            mask = homes["house_type_name"] == house_type
+            # Replace with house-type-specific predictions.
+            for house_type, model in self.models.items():
+                mask = homes["house_type_name"].eq(house_type).fillna(False).to_numpy(dtype=bool)
 
-            if mask.any():
-                predicted_log_ratio[mask.to_numpy()] = (
-                    model.predict(x.loc[mask])
-                )
+                if mask.any():
+                    predicted_log_ratio[mask] = model.predict(x.loc[mask])
 
-        return (
-            homes["list_price"].to_numpy()
-            * np.exp(predicted_log_ratio)
-        )
+        predictions = list_prices * np.exp(predicted_log_ratio)
+        if not np.isfinite(predictions).all() or (predictions <= 0).any():
+            raise ValueError('Model generated invalid prices')
+        return predictions
