@@ -1,0 +1,73 @@
+{
+  "official_reference_commit": "6c5831e12f523d617eccd1418d46a5cf2a0bb8b4",
+  "current_sources_sha256": {
+    "features.py": "c19db92a326e326faa6e82a863e89ac32fee9b7291910d4b285421bd0037ff81",
+    "models.py": "b4c2e7dac38ffaf1c2d32b66c233d4d5603c41010329f0cde2b15a17d84238d2",
+    "modelsfinal.py": "b4c2e7dac38ffaf1c2d32b66c233d4d5603c41010329f0cde2b15a17d84238d2"
+  },
+  "training_data": "supplied listings_clean.csv.zip, 150000 labelled sales through May 2026",
+  "training_sha256": "c7bfb220109ecefcf0c5c8881dd36d7bec06c1c95fbacf723a19ec4b1eccf065",
+  "protocol": "official expanding sale-month validation; each fold trains on sales before that month",
+  "months": [
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05"
+  ],
+  "held_out_homes_per_track": 10069,
+  "feature_parity": {
+    "off_market_training_rows": 150000,
+    "off_market_test_rows": 3974,
+    "joey_training_rows": 150000,
+    "joey_test_rows": 4064,
+    "checks": "exact DataFrame equality, including values, index, column order, and dtypes"
+  },
+  "off_market": {
+    "metrics": {
+      "n": 10069,
+      "mape": 12.39,
+      "mape_95ci": [
+        12.13,
+        12.66
+      ],
+      "mdape": 9.03,
+      "mdape_95ci": [
+        8.8,
+        9.28
+      ],
+      "median_signed_error": 0.6
+    },
+    "evaluation_source_sha256_before_feature_refactor": "0118b7f71b3bcbeb9ae3db5f29d1f10223c3c8fec55cc2fd6492773e864823cc",
+    "current_equivalence": "same estimator settings and exact same row-local feature tables on all training/test rows; off-market folds were not rerun after moving the builder"
+  },
+  "list_aware": {
+    "metrics": {
+      "n": 10069,
+      "mape": 6.3,
+      "mape_95ci": [
+        6.16,
+        6.46
+      ],
+      "mdape": 4.63,
+      "mdape_95ci": [
+        4.5,
+        4.74
+      ],
+      "median_signed_error": 0.79
+    },
+    "evaluation": "fresh six-month evaluation of the current sources and uploaded Joey feature specification"
+  },
+  "verification": {
+    "tests_passed": 63,
+    "test_failures": 0,
+    "official_pinned_dependencies": true
+  },
+  "limits": [
+    "Hidden test sold prices are unavailable; no hidden-test accuracy or rank claim.",
+    "Input cleaning provenance was not independently verified; uses supplied cleaned CSVs.",
+    "Repeatedly consulted validation periods should not be presented as untouched holdout data.",
+    "Existing submission CSVs were preserved rather than regenerated during this feature task."
+  ]
+}

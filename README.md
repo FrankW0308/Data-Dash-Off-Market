@@ -8,8 +8,10 @@ validation, fitted model, test predictions, reports, slides and a presentation s
 ## Combined off-market and list-aware workflow
 
 The root `models.py` combines `OffMarketModel` and Joey's `ListRatioModel`.
-The official starter's runner, feature functions, data loader, submission checker,
-and dependency pins are included at the repository root. See
+The official starter's runner, data loader, submission checker, and dependency
+pins are included at the repository root. `features.py` combines the rich
+off-market features with Joey's supplied list-aware features; both model entry
+points use the shared module. See [the feature review](FEATURES_REVIEW.md) and
 [the model review](MODEL_REVIEW.md) for checks and outstanding submission items.
 
 Use a separate environment for the official runner; the historical `part_b`
@@ -32,10 +34,14 @@ go to root-level `outputs/`, `reports/`, `figures/`, and `submissions/`.
 same frozen model version for the final submission.
 
 **The historical scores below do not evaluate the combined root `models.py`.**
-Its hyperparameters and feature processing differ. Real-data validation for both
-combined tracks is outstanding; synthetic integration checks establish that the
-pipeline runs, not its accuracy or competition rank. The downloadable Part B ZIP
-is the historical package and does not include the combined workflow.
+Its hyperparameters and feature processing differ. On the supplied cleaned CSVs,
+the combined off-market model measured 9.03% MdAPE / 12.39% MAPE; the list-aware
+model with Joey's uploaded features measured 4.63% MdAPE / 6.30% MAPE. Each used
+the official December 2025–May 2026 chronological protocol on 10,069 homes.
+See [the versioned validation summary](feature_validation/summary.json) for source
+fingerprints and the off-market feature-parity check. These are validation errors;
+hidden-test accuracy and rank remain unknown. The downloadable Part B ZIP is the
+historical package and does not include the combined workflow.
 
 ## Measured results
 

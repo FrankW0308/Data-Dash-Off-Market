@@ -53,11 +53,11 @@ def test_factory_selects_tracks_and_rejects_unknown_track():
 
 def test_list_aware_preserves_original_joey_predictions(fitted_models, query_homes):
     # Recorded by executing Joey's uploaded implementation with the unmodified
-    # official features.py, starter make_listings fixture above, and sklearn 1.7.2.
+    # uploaded features joey.py, starter make_listings fixture above, and sklearn 1.7.2.
     # Covers >=100-row Detached, <100-row Condo Apt, and unseen-type fallback.
     expected = np.array([
-        1453328.4037517118, 2038920.1901517166, 1610921.6498158607,
-        746504.1784576875, 2086688.350470921, 649515.4254250294,
+        1452521.1664183757, 2039148.929356776, 1610505.1803209053,
+        746512.9731172494, 2085590.665975117, 649441.0824052467,
     ])
     homes = data.hide_answers(query_homes, 'list_aware')
     actual = fitted_models['list_aware'].predict(homes)

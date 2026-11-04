@@ -1,5 +1,9 @@
 # Combined model review — November 4, 2026
 
+This records the earlier model audit. Subsequent feature integration and actual
+cleaned-data validation are documented in [FEATURES_REVIEW.md](FEATURES_REVIEW.md)
+and [feature_validation/summary.json](feature_validation/summary.json).
+
 The combined implementation passes the official starter's synthetic integration
 workflow and the model regression checks below. It is **not yet a validated,
 complete competition submission**, and no first-place prediction is supported.
