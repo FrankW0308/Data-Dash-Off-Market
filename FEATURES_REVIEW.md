@@ -80,9 +80,7 @@ off-market feature functions, confirms that the fix preserves the existing CSVs.
 Unknown organiser tests and hidden-test price accuracy remain unverified.
 
 Original-data validation, final prediction generation, and both official CSV
-checks are complete. The regenerated pair was provided separately; the
-repository's `submissions/` folder still contains the historical Part B
-off-market CSV and needs synchronizing before the competition entry is handed
-in. The report, team names, video, and organiser-form work were deferred by the
-user and are outside this code review. The nullable-type fix preserves the
-already verified original-data prediction files.
+checks are complete. The repository's `submissions/` folder contains the verified
+original-data pair for the combined models. The report, team names, video, and
+organiser-form work were deferred by the user and are outside this code review.
+The nullable-type fix preserves the already verified original-data predictions.

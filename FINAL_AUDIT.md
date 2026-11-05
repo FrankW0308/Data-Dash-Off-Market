@@ -6,6 +6,8 @@ refitting, prediction, and both official CSV checks. Its validation MdAPEs are
 8.53% off-market and 4.50% list-aware. A subsequent nullable-property-type fix
 was verified to preserve the feature values used by those predictions.
 See [the current summary](feature_validation/summary.json).
+The verified original-data CSV pair is now synchronized under `submissions/`;
+earlier notes below about missing or historical CSVs describe the previous state.
 
 The sections below retain the earlier audit and its cleaned-data finding for
 traceability. Its original-data availability blocker has been resolved. The

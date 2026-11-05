@@ -53,6 +53,10 @@ they do not evaluate the combined root model. The downloadable Part B ZIP is the
 historical package and does not include the combined workflow. Hidden-test
 accuracy and rank remain unknown.
 
+The current `submissions/` files are the verified original-data predictions from
+the combined models. The historical Part B ZIP retains its earlier prediction
+file; historical reproduction claims below refer to that archived run.
+
 ## Measured results
 
 Histogram gradient boosting was selected using October–November 2025 only.
