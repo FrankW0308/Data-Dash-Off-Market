@@ -65,14 +65,24 @@ reused for this new version. Subsequent cleaned-data checks used the official
 monthly fold boundaries, but the final audit found that **255 validation target
 prices had been replaced with $843,000**. The reported cleaned-label MdAPEs of
 9.03% off-market and 4.63% list-aware cannot establish original-target accuracy.
-[The validation summary](feature_validation/summary.json) retains those results
-with an explicit data-quality warning. See [FINAL_AUDIT.md](FINAL_AUDIT.md) for
-the blocker and required original-data rerun. Feature parity and the 63 code
-tests still pass; hidden-test accuracy remains unknown.
+Those results are archived in [cleaned_input_history.json](feature_validation/cleaned_input_history.json).
+The original Parquet files were subsequently supplied and verified. The rerun
+measured **8.53% MdAPE / 11.00% MAPE off-market** and
+**4.50% MdAPE / 5.65% MAPE list-aware**, with original labels preserved.
+[The current summary](feature_validation/summary.json) records the source/input
+hashes, both checked CSVs, and the distinction between validation and hidden results.
 
-This completes the feature code portion of the requirements. The submission
-still needs predictions generated from the final frozen code, both CSVs checked
-against their test IDs, measured results and error analysis, the combined
-maximum-four-page report with all team names, a maximum-five-minute video, and
-the organiser's submission form. Existing prediction files were preserved during
-this feature task.
+The latest robustness review fixed missing property types represented by pandas
+nullable strings: missing type flags now become zero and use the general
+list-aware fallback. All **65 tests pass**. Exact feature parity on 150,000
+original training rows and 4,064 list-aware test rows, together with unchanged
+off-market feature functions, confirms that the fix preserves the existing CSVs.
+Unknown organiser tests and hidden-test price accuracy remain unverified.
+
+Original-data validation, final prediction generation, and both official CSV
+checks are complete. The regenerated pair was provided separately; the
+repository's `submissions/` folder still contains the historical Part B
+off-market CSV and needs synchronizing before the competition entry is handed
+in. The report, team names, video, and organiser-form work were deferred by the
+user and are outside this code review. The nullable-type fix preserves the
+already verified original-data prediction files.

@@ -1,6 +1,18 @@
 # Final readiness audit — November 4, 2026
 
-**63 code tests passed. The full competition requirements have not all passed.**
+**Current update: 65 code tests pass.** Original Parquet files have now been
+supplied and verified. The original-data workflow completed validation,
+refitting, prediction, and both official CSV checks. Its validation MdAPEs are
+8.53% off-market and 4.50% list-aware. A subsequent nullable-property-type fix
+was verified to preserve the feature values used by those predictions.
+See [the current summary](feature_validation/summary.json).
+
+The sections below retain the earlier audit and its cleaned-data finding for
+traceability. Its original-data availability blocker has been resolved. The
+user deferred the report/video work; these code checks do not certify every
+submission requirement, 100% price accuracy, or unknown organiser tests.
+
+## Earlier audit
 
 The published source audited was `e4ce094`, checked against the official
 [SSU Data Dash handout](https://github.com/erwinzhang7/SSU-Data-Dash/blob/6c5831e12f523d617eccd1418d46a5cf2a0bb8b4/handout.md)

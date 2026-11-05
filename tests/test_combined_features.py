@@ -120,6 +120,20 @@ def test_joey_list_aware_schema_and_price_interactions_are_preserved(homes):
     assert_frame_equal(features.list_aware_features(reduced), actual)
 
 
+def test_missing_nullable_property_type_matches_object_missing_type(homes):
+    nullable = homes.copy()
+    nullable['house_type_name'] = nullable.house_type_name.astype('string')
+    nullable.loc[nullable.index[0], 'house_type_name'] = pd.NA
+    ordinary = nullable.copy()
+    ordinary['house_type_name'] = ordinary.house_type_name.astype(object)
+    assert_frame_equal(features.list_aware_features(nullable),
+                       features.list_aware_features(ordinary))
+    result = features.list_aware_features(nullable)
+    flags = ['is_' + kind for kind in features.PROPERTY_TYPES]
+    flags += ['detached_list_price', 'semi_list_price']
+    assert (result.loc[nullable.index[0], flags] == 0).all()
+
+
 def test_off_market_text_ablation_needs_no_remarks(homes):
     full = features.make_off_market_features(homes)
     without = features.make_off_market_features(homes.drop(columns='remarks'), include_text=False)

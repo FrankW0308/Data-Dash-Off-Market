@@ -76,6 +76,25 @@ def test_list_aware_refit_does_not_reuse_previous_type_models():
         np.testing.assert_allclose(reused.predict(homes), 300_000.0)
 
 
+def test_list_aware_missing_property_type_is_independent_of_pandas_dtype(training_sales, query_homes):
+    nullable_train = training_sales.copy()
+    nullable_train['house_type_name'] = nullable_train.house_type_name.astype('string')
+    nullable_train.loc[nullable_train.index[::30], 'house_type_name'] = pd.NA
+    nullable_homes = data.hide_answers(query_homes, 'list_aware').copy()
+    nullable_homes['house_type_name'] = nullable_homes.house_type_name.astype('string')
+    nullable_homes.loc[nullable_homes.index[0], 'house_type_name'] = pd.NA
+    ordinary_train = nullable_train.copy()
+    ordinary_train['house_type_name'] = ordinary_train.house_type_name.astype(object)
+    ordinary_homes = nullable_homes.copy()
+    ordinary_homes['house_type_name'] = ordinary_homes.house_type_name.astype(object)
+    nullable_model = models.make_model('list_aware', threads=2).fit(nullable_train)
+    ordinary_model = models.make_model('list_aware', threads=2).fit(ordinary_train)
+    actual = nullable_model.predict(nullable_homes)
+    np.testing.assert_array_equal(actual, ordinary_model.predict(ordinary_homes))
+    assert actual.shape == (len(nullable_homes),)
+    assert np.isfinite(actual).all() and (actual > 0).all()
+
+
 @pytest.mark.parametrize('track', ['off_market', 'list_aware'])
 def test_forbidden_prediction_fields_and_ids_are_ignored(track, fitted_models, query_homes):
     homes = data.hide_answers(query_homes, track)

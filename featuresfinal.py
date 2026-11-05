@@ -224,7 +224,7 @@ def _list_aware_base_features(homes):
     X["months"] = (listed - pd.Timestamp("2021-01-01")).dt.days / 30.44
     # One 0/1 column per property type.
     for kind in PROPERTY_TYPES:
-        X["is_" + kind] = (homes["house_type_name"] == kind).astype(int)
+        X["is_" + kind] = homes["house_type_name"].eq(kind).fillna(False).astype(int)
     return X
 
 
@@ -246,12 +246,12 @@ def list_aware_features(homes):
     # Separate price signals for different house types
     X["detached_list_price"] = (
         homes["list_price"]
-        * (homes["house_type_name"] == "Detached").astype(int)
+        * homes["house_type_name"].eq("Detached").fillna(False).astype(int)
     )
 
     X["semi_list_price"] = (
         homes["list_price"]
-        * (homes["house_type_name"] == "Semi-Detached").astype(int)
+        * homes["house_type_name"].eq("Semi-Detached").fillna(False).astype(int)
     )
 
     return X

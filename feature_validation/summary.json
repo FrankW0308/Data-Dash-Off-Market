@@ -1,13 +1,37 @@
 {
+  "status": "original_data_workflow_verified; hidden_test_results_unavailable",
   "official_reference_commit": "6c5831e12f523d617eccd1418d46a5cf2a0bb8b4",
   "current_sources_sha256": {
-    "features.py": "c19db92a326e326faa6e82a863e89ac32fee9b7291910d4b285421bd0037ff81",
+    "features.py": "b7267c4481cf76dda0e93d8654ee458cd280cf80ada2eecf31da5c083e634517",
+    "featuresfinal.py": "b7267c4481cf76dda0e93d8654ee458cd280cf80ada2eecf31da5c083e634517",
     "models.py": "b4c2e7dac38ffaf1c2d32b66c233d4d5603c41010329f0cde2b15a17d84238d2",
     "modelsfinal.py": "b4c2e7dac38ffaf1c2d32b66c233d4d5603c41010329f0cde2b15a17d84238d2"
   },
-  "training_data": "supplied listings_clean.csv.zip, 150000 labelled sales through May 2026",
-  "training_sha256": "c7bfb220109ecefcf0c5c8881dd36d7bec06c1c95fbacf723a19ec4b1eccf065",
-  "protocol": "official expanding sale-month validation; each fold trains on sales before that month",
+  "original_data_run_sources_sha256": {
+    "features.py": "c19db92a326e326faa6e82a863e89ac32fee9b7291910d4b285421bd0037ff81",
+    "featuresfinal.py": "c19db92a326e326faa6e82a863e89ac32fee9b7291910d4b285421bd0037ff81",
+    "models.py": "b4c2e7dac38ffaf1c2d32b66c233d4d5603c41010329f0cde2b15a17d84238d2",
+    "modelsfinal.py": "b4c2e7dac38ffaf1c2d32b66c233d4d5603c41010329f0cde2b15a17d84238d2",
+    "run.py": "bf87fd2967ff6422de14cb950bcc8bf4221178225e0111c336bcaed08a70b70f",
+    "data.py": "ccb691af73e97e97f34e5a2dabcf935dd89d96206d8e73d0b82294a2b3445fa2",
+    "check_submission.py": "f61e4a820a4e0436f83825bc622db1d4aa72ade0de92f00db193b9ff5061f87f",
+    "requirements.txt": "441385543039fa37a1be250e35954a5ad56fa2cd57fe6b47488f1cfea557c0dd"
+  },
+  "original_inputs": {
+    "listings.parquet": {
+      "sha256": "18cf87fa122b544018fccbc15040403b0fed37080c44a75d1b55deca96d2c4bf",
+      "bytes": 32881444
+    },
+    "test_off_market.parquet": {
+      "sha256": "d078d1bd652550a8bf33bbaa42af21e9a7ea6c42dfd53c57c083e5597165b1ad",
+      "bytes": 894758
+    },
+    "test_list_aware.parquet": {
+      "sha256": "ef1b82d16d547199b93a4e1a27d1ff3946a327854c320956a32f437b81469b35",
+      "bytes": 937141
+    }
+  },
+  "protocol": "unmodified official expanding monthly validation functions; original labels preserved",
   "months": [
     "2025-12",
     "2026-01",
@@ -17,80 +41,77 @@
     "2026-05"
   ],
   "held_out_homes_per_track": 10069,
-  "feature_parity": {
-    "off_market_training_rows": 150000,
-    "off_market_test_rows": 3974,
-    "joey_training_rows": 150000,
-    "joey_test_rows": 4064,
-    "checks": "exact DataFrame equality, including values, index, column order, and dtypes"
-  },
+  "training_rows": 150000,
   "off_market": {
     "metrics": {
       "n": 10069,
-      "mape": 12.39,
+      "mape": 11.0,
       "mape_95ci": [
-        12.13,
-        12.66
+        10.8,
+        11.21
       ],
-      "mdape": 9.03,
+      "mdape": 8.53,
       "mdape_95ci": [
-        8.8,
-        9.28
+        8.37,
+        8.76
       ],
-      "median_signed_error": 0.6
-    },
-    "evaluation_source_sha256_before_feature_refactor": "0118b7f71b3bcbeb9ae3db5f29d1f10223c3c8fec55cc2fd6492773e864823cc",
-    "current_equivalence": "same estimator settings and exact same row-local feature tables on all training/test rows; off-market folds were not rerun after moving the builder",
-    "metrics_target_scope": "altered cleaned validation labels; not original-target performance",
-    "diagnostic_original_label_rescore": {
-      "mdape": 9.15860768,
-      "mape": 12.90766289
-    },
-    "diagnostic_scope": "existing predictions rescored using retained original-run labels; models still trained on cleaned data; not a fresh raw-data training run"
+      "median_signed_error": 0.5
+    }
   },
   "list_aware": {
     "metrics": {
       "n": 10069,
-      "mape": 6.3,
+      "mape": 5.65,
       "mape_95ci": [
-        6.16,
-        6.46
+        5.56,
+        5.74
       ],
-      "mdape": 4.63,
+      "mdape": 4.5,
       "mdape_95ci": [
-        4.5,
-        4.74
+        4.39,
+        4.59
       ],
-      "median_signed_error": 0.79
+      "median_signed_error": 0.69
+    }
+  },
+  "submissions": {
+    "off_market": {
+      "rows": 3974,
+      "sha256": "f7bb85a9bfe4adfafb503b9799dfbd584ce7edff704858f2bf65ce1f254c48c7",
+      "official_checker": "passed",
+      "ids_match_original_test_in_order": true,
+      "predictions_different_from_previous_upload": 3973,
+      "max_absolute_difference_from_previous_upload": 9410941.0
     },
-    "evaluation": "fresh six-month evaluation of the current sources and uploaded Joey feature specification",
-    "metrics_target_scope": "altered cleaned validation labels; not original-target performance",
-    "diagnostic_original_label_rescore": {
-      "mdape": 4.66785881,
-      "mape": 7.68992666
-    },
-    "diagnostic_scope": "existing predictions rescored using retained original-run labels; models still trained on cleaned data; not a fresh raw-data training run"
+    "list_aware": {
+      "rows": 4064,
+      "sha256": "7499a74430a00c9d286ebc25349bee3d8c95a90be9c8b18f95b3b684d0a04fbe",
+      "official_checker": "passed",
+      "ids_match_original_test_in_order": true,
+      "predictions_different_from_previous_upload": 0,
+      "max_absolute_difference_from_previous_upload": 0.0
+    }
   },
   "verification": {
-    "tests_passed": 63,
-    "test_failures": 0,
+    "tests_passed": 65,
+    "failures": 0,
     "official_pinned_dependencies": true,
-    "final_audit_tests_passed": 63
+    "nullable_missing_property_type_fix": {
+      "issue_fixed": "nullable missing property types failed list-aware integer flags",
+      "current_features_sha256": "b7267c4481cf76dda0e93d8654ee458cd280cf80ada2eecf31da5c083e634517",
+      "previous_features_sha256": "c19db92a326e326faa6e82a863e89ac32fee9b7291910d4b285421bd0037ff81",
+      "original_training_rows_with_exact_list_aware_feature_parity": 150000,
+      "original_test_rows_with_exact_list_aware_feature_parity": 4064,
+      "off_market_feature_function_AST_unchanged": true,
+      "final_CSV_bytes_unchanged": true,
+      "hidden_accuracy": "unknown; no hidden targets used or sought"
+    },
+    "scope": "original-data run preceded the nullable-type fix; exact original list-aware feature equality and unchanged off-market feature functions verify its numerical equivalence for these inputs"
   },
   "limits": [
-    "Critical: 255 validation sale-price labels were changed to 843000 by upstream cleaning.",
-    "Hidden test sold prices are unavailable; no hidden-test accuracy or rank claim.",
-    "Input cleaning provenance was not independently verified; uses supplied cleaned CSVs.",
-    "Repeatedly consulted validation periods should not be presented as untouched holdout data.",
-    "Existing submission CSVs were preserved rather than regenerated during this feature task."
-  ],
-  "readiness_status": "blocked_original_targets_changed_in_cleaned_data",
-  "data_quality": {
-    "matched_validation_rows": 10069,
-    "changed_validation_targets": 255,
-    "changed_targets_all_replaced_with": 843000,
-    "source_of_original_labels": "retained part_b original-data validation records; original Parquets absent",
-    "earlier_metrics_scope": "stored metrics are against altered cleaned labels, not unchanged original competition targets",
-    "required_action": "obtain original inputs, audit cleaning, rerun chronological validation and final predictions"
-  }
+    "Hidden targets and organiser hidden tests were unavailable and have not been claimed to pass.",
+    "The published test suite passing does not guarantee unknown hidden test cases.",
+    "The earlier cleaned-label evaluation is archived in cleaned_input_history.json and is not original-target performance.",
+    "This audit covers code and the generated CSVs; report/video requirements were deferred by the user."
+  ]
 }
