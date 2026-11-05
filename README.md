@@ -5,6 +5,10 @@ validation, fitted model, test predictions, reports, slides and a presentation s
 
 **[Download the complete Part B package](https://github.com/FrankW0308/Data-Dash-Off-Market/raw/refs/heads/main/Part_B_Off_Market_Complete.zip)**
 
+Current 90-second off-market presentation: [slides PDF](presentation/off_market_90_second_slides.pdf)
+and [speaker script PDF](presentation/off_market_90_second_script.pdf), with
+[editable and plain-text versions](presentation/README.md).
+
 ## Combined off-market and list-aware workflow
 
 The root `models.py` combines `OffMarketModel` and Joey's `ListRatioModel`.
