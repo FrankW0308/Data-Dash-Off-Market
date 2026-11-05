@@ -1,14 +1,14 @@
 OFF-MARKET PREDICTION — 90-SECOND SPEAKER SCRIPT
-About 188 written words; aim for roughly 130 words/minute with brief slide-transition pauses.
+About 190 written words; aim for roughly 130 words/minute with brief slide-transition pauses.
 English · Member B · Use the final original-data results
 
-SLIDE 1: My approach | 0:00–0:38
-My part is off-market prediction: estimating a home's sale price without its asking price. I used histogram gradient boosting to learn log sale prices. Learning log prices reduces the influence of very expensive homes. The model captures nonlinear relationships between a home's characteristics and price. It combines size, rooms, parking, property type, synthetic location, listing date, and description cues. It excludes list price and post-sale information. Missing measurements remain unknown, and category encoders learn only from the training fold.
+SLIDE 1: Working process | 0:00–0:48
+Here is how my off-market model works. First, I keep only information available without an asking price. I turn area ranges into midpoints, create property ratios, and extract fixed description cues. Category encoding is fitted inside each training fold, and encoded categories remain categorical. Histogram gradient boosting groups numeric measurements into bins. It also learns how to handle missing measurements. It then adds small decision trees that correct remaining errors in log sale price. Finally, it combines their contributions and converts the prediction back into dollars. This captures nonlinear relationships while keeping list price and post-sale information out of the predictors.
 
-SLIDE 2: Measured results | 0:38–1:05
-The first graph compares median absolute percentage error. Our model achieved eight point five three percent, against twenty point eight four percent for the nearest-sales reference. Mean absolute percentage error was eleven percent. We tested ten thousand and sixty-nine held-out homes, predicting each month from December twenty twenty-five through May twenty twenty-six using only earlier sales.
+SLIDE 2: Validation and results | 0:48–1:10
+On the graph, median absolute percentage error drops from twenty point eight four percent for the nearest-sales reference to eight point five three percent. Mean absolute percentage error is eleven percent. We tested ten thousand and sixty-nine homes across six monthly folds, training only on earlier sales.
 
-SLIDE 3: Performance over time and final output | 1:05–1:30
-The monthly graph shows error across those six months. I then refitted the model on all one hundred and fifty thousand original sales and generated three thousand nine hundred and seventy-four predictions. Every test ID appears once, with positive, finite prices. These checked predictions provide a reproducible valuation reference. Hidden-test accuracy remains unknown.
+SLIDE 3: Refit, predict, and check | 1:10–1:30
+The monthly graph checks performance over time. After validation, I refitted on all one hundred and fifty thousand original sales and produced three thousand nine hundred and seventy-four predictions. Every test ID appears once, with positive finite prices. Hidden-test accuracy remains unknown.
 
 Team timing: a 90-second segment leaves 3 minutes 30 seconds for the other segments in the five-minute video.
